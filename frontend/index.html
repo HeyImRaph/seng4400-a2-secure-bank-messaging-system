@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Bank Messaging</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Bank Messaging</h1>
+        <div class="layout">
+
+            <div class="left">
+                <div class="box">
+                    <h2>Send Message</h2>
+                    <label for="customerID">Customer ID:</label>
+                    <input id="customerID" placeholder="Customer ID">
+                    <br>
+                    <label for="name">Name:</label>
+                    <input id="name" placeholder="Name">
+                    <br>
+                    <label for="subject">Subject:</label>
+                    <input id="subject" placeholder="Subject">
+                    <br>
+                    <label for="message">Message:</label>
+                    <textarea id="message" placeholder="Message"></textarea>
+                    <br>
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+
+                <div class="box">
+                    <h2>Staff Reply</h2>
+                    <input id="replyThreadId" type="hidden">
+                    <p id="selectedMessageText">No Message Selected</p>
+                    <br>
+                    <label for="staffName">Name:</label>
+                    <input id="staffName" placeholder="Staff Name">
+                    <br>
+                    <label for="replyMessage">Message:</label>
+                    <textarea id="replyMessage" placeholder="Reply Message"></textarea>
+                    <br>
+                    <button onclick="replyMessage()">Send Reply</button>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="box">
+                    <h2>View Messages</h2>
+                    <input id="viewCustomerID" placeholder="Customer ID">
+                    <button onclick="getMessages()">Load</button>
+
+                    <div id="messages"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
