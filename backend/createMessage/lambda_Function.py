@@ -21,7 +21,7 @@ def lambda_handler(event, context):
 
         if not customer_id or not sender_name or not subject or not message_body:
             return response(400, {
-                "error": "customerId, senderName, subject, and messageBody are required"
+                "ERROR": "customerId, senderName, subject, and messageBody are required"
             })
 
         message_id = str(uuid.uuid4())
@@ -51,7 +51,7 @@ def lambda_handler(event, context):
 
     except Exception as e:
         return response(500, {
-            "error": str(e)
+            "ERROR": str(e)
         })
 
 

@@ -20,7 +20,7 @@ def lambda_handler(event, context):
 
         if not thread_id or not staff_name or not message_body:
             return response(400, {
-                "error": "threadId, staffName, and messageBody are required"
+                "ERROR": "threadId, staffName, and messageBody are required"
             })
 
         thread_result = table.scan(
@@ -31,7 +31,7 @@ def lambda_handler(event, context):
 
         if len(thread_messages) == 0:
             return response(404, {
-                "error": "Thread not found"
+                "ERROR": "Thread not found"
             })
 
         original_message = thread_messages[0]
@@ -62,7 +62,7 @@ def lambda_handler(event, context):
 
     except Exception as e:
         return response(500, {
-            "error": str(e)
+            "ERROR": str(e)
         })
 
 

@@ -29,7 +29,7 @@ def lambda_handler(event, context):
 
     except Exception as e:
         return response(500, {
-            "error": str(e)
+            "ERROR": str(e)
         })
 
 
