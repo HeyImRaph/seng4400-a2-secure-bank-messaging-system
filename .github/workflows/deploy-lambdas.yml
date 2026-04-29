@@ -16,7 +16,7 @@ jobs:
       - name: Zip createMessage
         run: |
           cd backend/createMessage
-          zip -r createMessage.zip lambda_Function.py.py
+          zip -r createMessage.zip lambda_Function.py
 
       - name: Zip getMessages
         run: |
