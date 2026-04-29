@@ -16,17 +16,17 @@ jobs:
       - name: Zip createMessage
         run: |
           cd backend/createMessage
-          zip -r createMessage.zip lambda_function.py
+          zip -r createMessage.zip lambdaFunction.py
 
       - name: Zip getMessages
         run: |
           cd backend/getMessages
-          zip -r getMessages.zip lambda_function.py
+          zip -r getMessages.zip lambdaFunction.py
 
       - name: Zip replyMessage
         run: |
           cd backend/replyMessage
-          zip -r replyMessage.zip lambda_function.py
+          zip -r replyMessage.zip lambdaFunction.py
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
