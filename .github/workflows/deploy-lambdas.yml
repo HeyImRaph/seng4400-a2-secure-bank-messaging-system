@@ -1,0 +1,55 @@
+name: Deploy Lambdas
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Zip createMessage
+        run: |
+          cd backend/createMessage
+          zip -r createMessage.zip lambda_function.py
+
+      - name: Zip getMessages
+        run: |
+          cd backend/getMessages
+          zip -r getMessages.zip lambda_function.py
+
+      - name: Zip replyMessage
+        run: |
+          cd backend/replyMessage
+          zip -r replyMessage.zip lambda_function.py
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+
+      - name: Deploy createMessage
+        run: |
+          aws lambda update-function-code \
+            --function-name createMessage \
+            --zip-file fileb://backend/createMessage/createMessage.zip
+
+      - name: Deploy getMessages
+        run: |
+          aws lambda update-function-code \
+            --function-name getMessages \
+            --zip-file fileb://backend/getMessages/getMessages.zip
+
+      - name: Deploy replyMessage
+        run: |
+          aws lambda update-function-code \
+            --function-name replyMessage \
+            --zip-file fileb://backend/replyMessage/replyMessage.zip
