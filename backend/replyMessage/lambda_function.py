@@ -20,7 +20,7 @@ def lambda_handler(event, context):
 
         if not thread_id or not staff_name or not message_body:
             return response(400, {
-                "ERROr": "threadId, staffName, and messageBody are required"
+                "ERROR": "threadId, staffName, and messageBody are required"
             })
 
         thread_result = table.scan(
