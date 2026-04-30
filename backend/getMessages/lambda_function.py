@@ -8,18 +8,23 @@ table = dynamodb.Table("SecureBankMessages")
 
 def lambda_handler(event, context):
     try:
+        #   Extract customer ID from request path parameters
         path_params = event.get("pathParameters") or {}
         customer_id = path_params.get("customerId")
 
+        #   If customer exist, filter messages for customer ID
         if customer_id:
             customer_id = customer_id.upper()
             result = table.scan(
                 FilterExpression=Attr("customerId").eq(customer_id)
             )
+        # if not customer exists then show all messages
         else:
             result = table.scan()
 
         messages = result.get("Items", [])
+
+        #   Sorting messages by creation time
         messages.sort(key=lambda x: x.get("createdAt", ""))
 
         return response(200, {
