@@ -19,6 +19,8 @@
 
 ## S3 Link (May Not Work After Submission)
 
+http://secure-bank-messaging-bucket-lawrence.s3-website-us-east-1.amazonaws.com
+
 ## Architecture
 
 This project implements a secure messaging system between customer and bank staff using AWS
