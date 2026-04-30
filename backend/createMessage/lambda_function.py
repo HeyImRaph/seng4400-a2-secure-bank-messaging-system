@@ -9,6 +9,7 @@ table = dynamodb.Table("SecureBankMessages")
 
 def lambda_handler(event, context):
     try:
+        #   Parse request body from API Gateway
         body = json.loads(event.get("body", "{}"))
 
         customer_id = body.get("customerId")
@@ -19,11 +20,13 @@ def lambda_handler(event, context):
         subject = body.get("subject")
         message_body = body.get("messageBody")
 
+        #   Validate required field
         if not customer_id or not sender_name or not subject or not message_body:
             return response(400, {
                 "ERROR": "customerId, senderName, subject, and messageBody are required"
             })
 
+        #   Generate unique IDs for both messages and threads
         message_id = str(uuid.uuid4())
         thread_id = str(uuid.uuid4())
         created_at = datetime.now(timezone.utc).isoformat()
@@ -40,6 +43,7 @@ def lambda_handler(event, context):
             "status": "OPEN"
         }
 
+        #   Store the message in DynamoDB
         table.put_item(Item=item)
 
         return response(201, {
