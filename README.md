@@ -12,11 +12,11 @@
 This project implements a secure messaging system between customer and bank staff using AWS
 and the following technology stack:
 
-- Frontend: Static HTML, CSS, Javascript, hosted on AWS S3
-- API Gateway: Handles HTTP requests
-- Backend: AWS Lambda functions
-- Database: DynamoDB
-- CI/CD: GitHub Actions
+- **Frontend:** Static HTML, CSS, Javascript, hosted on AWS S3
+- **API Gateway:** Handles HTTP requests
+- **Backend:** AWS Lambda functions
+- **Database:** DynamoDB
+- **CI/CD:** GitHub Actions
 
 ## User Journey
 
@@ -26,20 +26,20 @@ and the following technology stack:
 
 ## Backend Modules
 
-- createMessage
+- **createMessage**
     - Handles new messages
-- getMessages
+- **getMessages**
     - Retrieves messages
-- replyMessage
+- **replyMessage**
     - Handles staff replies
 
 
 ## API Route
 
-- POST /messages
-- GET /messages
-- GET /messages/customerId
-- POST /messages/{threadId}/reply
+- **POST** /messages
+- **GET** /messages
+- **GET** /messages/customerId
+- **POST** /messages/{threadId}/reply
 
 ## Persistence
 
