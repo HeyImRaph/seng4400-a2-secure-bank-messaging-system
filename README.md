@@ -7,6 +7,18 @@
 - **Course:** SENG4400
 - **Due Date:** 30/04/2026, 11:59am
 
+## How to run
+
+1.  Click the S3 Link Provided by AWS S3 Bucket
+2.  Send Message as a Customer
+3.  View Messages
+    -   Either enetering a customer ID or not
+4.  Reply to message as a staff
+    -   Click on message to reply to it
+5.  Reload messages to see the reply
+
+## S3 Link (May Not Work After Submission)
+
 ## Architecture
 
 This project implements a secure messaging system between customer and bank staff using AWS
