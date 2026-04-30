@@ -10,19 +10,23 @@ table = dynamodb.Table("SecureBankMessages")
 
 def lambda_handler(event, context):
     try:
+        #   Grabbing thread ID from request path
         path_params = event.get("pathParameters") or {}
         thread_id = path_params.get("threadId")
 
+        #   Parsing request body for staff reply details
         body = json.loads(event.get("body", "{}"))
 
         staff_name = body.get("staffName")
         message_body = body.get("messageBody")
 
+        #   Validating required fields for reply
         if not thread_id or not staff_name or not message_body:
             return response(400, {
                 "ERROR": "threadId, staffName, and messageBody are required"
             })
 
+        #   Finding existing messages in the same thread
         thread_result = table.scan(
             FilterExpression=Attr("threadId").eq(thread_id)
         )
@@ -39,6 +43,7 @@ def lambda_handler(event, context):
         message_id = str(uuid.uuid4())
         created_at = datetime.now(timezone.utc).isoformat()
 
+        #   Create new reply linked to original thread
         item = {
             "messageId": message_id,
             "threadId": thread_id,
@@ -51,6 +56,7 @@ def lambda_handler(event, context):
             "status": "REPLIED"
         }
 
+        #   Saving reply message to DynamoDB
         table.put_item(Item=item)
 
         return response(201, {
